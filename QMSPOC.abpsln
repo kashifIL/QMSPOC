@@ -1,0 +1,52 @@
+{
+  "id": "38d68424-d25a-4ba2-98e8-293bfac2b8b1",
+  "template": "app",
+  "versions": {
+    "LeptonX": "4.0.5",
+    "AbpFramework": "9.0.4",
+    "AbpCommercial": "9.0.4",
+    "AbpStudio": "0.9.22",
+    "TargetDotnetFramework": "net9.0"
+  },
+  "modules": {
+    "QMSPOC": {
+      "path": "QMSPOC.abpmdl"
+    }
+  },
+  "runProfiles": {
+    "Default": {
+      "path": "etc/abp-studio/run-profiles/Default.abprun.json"
+    }
+  },
+  "options": {
+    "httpRequests": {
+      "ignoredUrls": [
+        "^/metrics$"
+      ]
+    }
+  },
+  "creatingStudioConfiguration": {
+    "template": "app",
+    "createdAbpStudioVersion": "0.9.22",
+    "tiered": "false",
+    "runInstallLibs": "true",
+    "useLocalReferences": "false",
+    "multiTenancy": "true",
+    "includeTests": "false",
+    "kubernetesConfiguration": "false",
+    "uiFramework": "mvc",
+    "mobileFramework": "none",
+    "distributedEventBus": "rabbitmq",
+    "databaseProvider": "ef",
+    "runDbMigrator": "true",
+    "databaseManagementSystem": "sqlserver",
+    "separateTenantSchema": "false",
+    "createInitialMigration": "true",
+    "theme": "leptonx",
+    "themeStyle": "system",
+    "mobileFramework": "none",
+    "publicWebsite": "false",
+    "optionalModules": "GDPR FileManagement TextTemplateManagement LanguageManagement AuditLogging Chat OpenIddictAdmin",
+    "socialLogin": ""
+  }
+}

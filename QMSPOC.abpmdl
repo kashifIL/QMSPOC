@@ -1,0 +1,104 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.LeptonXTheme": {
+      "version": "4.0.5",
+      "isInstalled": true
+    },
+    "Volo.Abp.TextTemplateManagement": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Chat": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.LanguageManagement": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.FileManagement": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.OpenIddict.Pro": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.Gdpr": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.AuditLogging.Pro": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Saas": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.Identity.Pro": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.Account.Pro": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.PermissionManagement": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "9.0.4",
+      "isInstalled": true
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {}
+    }
+  },
+  "packages": {
+    "QMSPOC.Application": {
+      "path": "src/QMSPOC.Application/QMSPOC.Application.abppkg",
+      "folder": "src"
+    },
+    "QMSPOC.Domain.Shared": {
+      "path": "src/QMSPOC.Domain.Shared/QMSPOC.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "QMSPOC.Application.Contracts": {
+      "path": "src/QMSPOC.Application.Contracts/QMSPOC.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "QMSPOC.HttpApi": {
+      "path": "src/QMSPOC.HttpApi/QMSPOC.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "QMSPOC.HttpApi.Client": {
+      "path": "src/QMSPOC.HttpApi.Client/QMSPOC.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "QMSPOC.Web": {
+      "path": "src/QMSPOC.Web/QMSPOC.Web.abppkg",
+      "folder": "src"
+    },
+    "QMSPOC.EntityFrameworkCore": {
+      "path": "src/QMSPOC.EntityFrameworkCore/QMSPOC.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "QMSPOC.DbMigrator": {
+      "path": "src/QMSPOC.DbMigrator/QMSPOC.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "QMSPOC.Domain": {
+      "path": "src/QMSPOC.Domain/QMSPOC.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}
