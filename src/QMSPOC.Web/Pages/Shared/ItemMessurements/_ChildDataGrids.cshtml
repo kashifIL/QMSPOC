@@ -1,0 +1,44 @@
+@using QMSPOC.Localization
+@using QMSPOC.Permissions
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<QMSPOCResource> L
+@inject IAuthorizationService Authorization
+@model Guid
+
+<div class="rounded p-3 pb-0 pt-1">
+    <ul class="nav nav-tabs" role="tablist">
+        @if (await Authorization.IsGrantedAsync(QMSPOCPermissions.ItemMeasuremetnDetails.Default))
+    {
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="ItemMeasuremetnDetails-tab-@Model" data-bs-toggle="tab" data-bs-target="#ItemMeasuremetnDetail-@Model" type="button" role="tab" aria-controls="ItemMeasuremetnDetail" aria-selected="true">@L["ItemMeasuremetnDetails"]</a>
+        </li>
+    }
+    </ul>
+    
+    <div class="tab-content pt-0">
+        @if (await Authorization.IsGrantedAsync(QMSPOCPermissions.ItemMeasuremetnDetails.Default))
+    {
+        <div class="tab-pane fade show active" id="ItemMeasuremetnDetail-@Model" role="tabpanel" aria-labelledby="ItemMeasuremetnDetail-tab-@Model">
+            @if (await Authorization.IsGrantedAsync(QMSPOCPermissions.ItemMeasuremetnDetails.Create))
+            {
+                <button data-itemMessurement-id="@Model" class="btn btn-primary btn-sm float-end mb-3 NewItemMeasuremetnDetailButton" type="button" data-busy-text="@L["Processing"]">
+                    <i class="fa fa-plus"></i> <span>@L["NewItemMeasuremetnDetail"]</span>
+                </button>
+            }
+        
+            <table class="table table-striped dataTable no-footer" striped-rows="true" id="ItemMeasuremetnDetailsTable-@Model">
+                <thead>
+                <tr>
+                    <th>@L["Actions"]</th>
+                    					<th>@L["Type"]</th>
+					<th>@L["Value"]</th>
+					<th>@L["Uom"]</th>
+
+                </tr>
+                </thead>
+            </table>
+        </div>
+    }
+    </div>
+</div>

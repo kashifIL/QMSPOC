@@ -89,6 +89,17 @@
     "Uom": "Uom",
     "MinQty": "Min Qty",
     "MaxQty": "Max Qty",
-    "Permission:ItemBomDetails": "Item Bom Details"
+    "Permission:ItemBomDetails": "Item Bom Details",
+    "Permission:ItemMessurements": "Item Messurements",
+    "ItemMessurements": "Item Messurements",
+    "NewItemMessurement": "New Item Messurement",
+    "Menu:ItemMessurements": "Item Messurements",
+    "ItemMeasuremetnDetails": "Item Measuremetn Details",
+    "NewItemMeasuremetnDetail": "New Item Measuremetn Detail",
+    "Type": "Type",
+    "Value": "Value",
+    "MinValue": "Min Value",
+    "MaxValue": "Max Value",
+    "Permission:ItemMeasuremetnDetails": "Item Measuremetn Details"
   }
 }

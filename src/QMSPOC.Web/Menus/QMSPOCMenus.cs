@@ -16,4 +16,6 @@ public class QMSPOCMenus
 
     public const string ItemBoms = Prefix + ".ItemBoms";
 
+    public const string ItemMessurements = Prefix + ".ItemMessurements";
+
 }

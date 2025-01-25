@@ -1,3 +1,5 @@
+using QMSPOC.ItemMeasuremetnDetails;
+using QMSPOC.ItemMessurements;
 using QMSPOC.ItemBomDetails;
 using QMSPOC.ItemBoms;
 using QMSPOC.Items;
@@ -32,5 +34,11 @@ public class QMSPOCApplicationAutoMapperProfile : Profile
 
         CreateMap<ItemBomDetail, ItemBomDetailDto>();
         CreateMap<ItemBomDetailWithNavigationProperties, ItemBomDetailWithNavigationPropertiesDto>();
+
+        CreateMap<ItemMessurement, ItemMessurementDto>();
+        CreateMap<ItemMessurement, ItemMessurementExcelDto>();
+        CreateMap<ItemMessurementWithNavigationProperties, ItemMessurementWithNavigationPropertiesDto>();
+
+        CreateMap<ItemMeasuremetnDetail, ItemMeasuremetnDetailDto>();
     }
 }

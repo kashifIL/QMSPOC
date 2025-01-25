@@ -45,4 +45,20 @@ public static class QMSPOCPermissions
         public const string Create = Default + ".Create";
         public const string Delete = Default + ".Delete";
     }
+
+    public static class ItemMessurements
+    {
+        public const string Default = GroupName + ".ItemMessurements";
+        public const string Edit = Default + ".Edit";
+        public const string Create = Default + ".Create";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class ItemMeasuremetnDetails
+    {
+        public const string Default = GroupName + ".ItemMeasuremetnDetails";
+        public const string Edit = Default + ".Edit";
+        public const string Create = Default + ".Create";
+        public const string Delete = Default + ".Delete";
+    }
 }

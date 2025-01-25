@@ -1,0 +1,43 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using QMSPOC.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@using QMSPOC.Web.Pages.ItemMeasuremetnDetails
+@using QMSPOC.ItemMeasuremetnDetails;
+@using System.Globalization
+@inject IHtmlLocalizer<QMSPOCResource> L
+@model CreateModalModel
+@{
+    Layout = null;
+}
+
+
+<form data-ajaxForm="true" asp-page="/ItemMeasuremetnDetails/CreateModal" autocomplete="off">
+    <abp-modal id="ItemMeasuremetnDetailCreateModal">
+        <abp-modal-header title="@L["NewItemMeasuremetnDetail"].Value"></abp-modal-header>
+
+        <abp-modal-body>
+
+                
+                    <abp-input asp-for="ItemMessurementId" />
+                    
+
+            <abp-input asp-for="ItemMeasuremetnDetail.Type"    />
+
+
+            <abp-input asp-for="ItemMeasuremetnDetail.Value"   data-val="false" />
+
+
+            <abp-input asp-for="ItemMeasuremetnDetail.Uom"    />
+
+                    
+                
+
+
+        </abp-modal-body>
+
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)">
+
+        </abp-modal-footer>
+    </abp-modal>
+</form>

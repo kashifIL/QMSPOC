@@ -1,3 +1,5 @@
+using QMSPOC.ItemMeasuremetnDetails;
+using QMSPOC.ItemMessurements;
 using QMSPOC.ItemBomDetails;
 using QMSPOC.ItemBoms;
 using QMSPOC.Items;
@@ -35,6 +37,8 @@ public class QMSPOCDbContext :
     ISaasDbContext,
     IIdentityProDbContext
 {
+    public DbSet<ItemMeasuremetnDetail> ItemMeasuremetnDetails { get; set; } = null!;
+    public DbSet<ItemMessurement> ItemMessurements { get; set; } = null!;
     public DbSet<ItemBomDetail> ItemBomDetails { get; set; } = null!;
     public DbSet<ItemBom> ItemBoms { get; set; } = null!;
     public DbSet<Item> Items { get; set; } = null!;
@@ -145,6 +149,27 @@ public class QMSPOCDbContext :
                     b.Property(x => x.Uom).HasColumnName(nameof(ItemBomDetail.Uom));
                     b.HasOne<Item>().WithMany().IsRequired().HasForeignKey(x => x.ItemId).OnDelete(DeleteBehavior.NoAction);
                     b.HasOne<ItemBom>().WithMany(x => x.ItemBomDetails).HasForeignKey(x => x.ItemBomId).IsRequired().OnDelete(DeleteBehavior.Cascade);
+                });
+
+        builder.Entity<ItemMessurement>(b =>
+                {
+                    b.ToTable(QMSPOCConsts.DbTablePrefix + "ItemMessurements", QMSPOCConsts.DbSchema);
+                    b.ConfigureByConvention();
+                    b.Property(x => x.TenantId).HasColumnName(nameof(ItemMessurement.TenantId));
+                    b.Property(x => x.Code).HasColumnName(nameof(ItemMessurement.Code)).IsRequired();
+                    b.Property(x => x.Version).HasColumnName(nameof(ItemMessurement.Version));
+                    b.HasOne<Item>().WithMany().IsRequired().HasForeignKey(x => x.ItemId).OnDelete(DeleteBehavior.NoAction);
+                    b.HasMany(x => x.ItemMeasuremetnDetails).WithOne().HasForeignKey(x => x.ItemMessurementId).IsRequired().OnDelete(DeleteBehavior.Cascade);
+                });
+        builder.Entity<ItemMeasuremetnDetail>(b =>
+                {
+                    b.ToTable(QMSPOCConsts.DbTablePrefix + "ItemMeasuremetnDetails", QMSPOCConsts.DbSchema);
+                    b.ConfigureByConvention();
+                    b.Property(x => x.TenantId).HasColumnName(nameof(ItemMeasuremetnDetail.TenantId));
+                    b.Property(x => x.Type).HasColumnName(nameof(ItemMeasuremetnDetail.Type));
+                    b.Property(x => x.Value).HasColumnName(nameof(ItemMeasuremetnDetail.Value));
+                    b.Property(x => x.Uom).HasColumnName(nameof(ItemMeasuremetnDetail.Uom));
+                    b.HasOne<ItemMessurement>().WithMany(x => x.ItemMeasuremetnDetails).HasForeignKey(x => x.ItemMessurementId).IsRequired().OnDelete(DeleteBehavior.Cascade);
                 });
     }
 }

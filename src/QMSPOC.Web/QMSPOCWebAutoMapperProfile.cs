@@ -1,3 +1,7 @@
+using QMSPOC.Web.Pages.ItemMeasuremetnDetails;
+using QMSPOC.ItemMeasuremetnDetails;
+using QMSPOC.Web.Pages.ItemMessurements;
+using QMSPOC.ItemMessurements;
 using QMSPOC.Web.Pages.ItemBomDetails;
 using QMSPOC.ItemBomDetails;
 using QMSPOC.Web.Pages.ItemBoms;
@@ -32,5 +36,13 @@ public class QMSPOCWebAutoMapperProfile : Profile
         CreateMap<ItemBomDetailDto, ItemBomDetailUpdateViewModel>();
         CreateMap<ItemBomDetailUpdateViewModel, ItemBomDetailUpdateDto>();
         CreateMap<ItemBomDetailCreateViewModel, ItemBomDetailCreateDto>();
+
+        CreateMap<ItemMessurementDto, ItemMessurementUpdateViewModel>();
+        CreateMap<ItemMessurementUpdateViewModel, ItemMessurementUpdateDto>();
+        CreateMap<ItemMessurementCreateViewModel, ItemMessurementCreateDto>();
+
+        CreateMap<ItemMeasuremetnDetailDto, ItemMeasuremetnDetailUpdateViewModel>();
+        CreateMap<ItemMeasuremetnDetailUpdateViewModel, ItemMeasuremetnDetailUpdateDto>();
+        CreateMap<ItemMeasuremetnDetailCreateViewModel, ItemMeasuremetnDetailCreateDto>();
     }
 }

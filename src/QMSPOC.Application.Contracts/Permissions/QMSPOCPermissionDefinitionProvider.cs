@@ -36,6 +36,16 @@ public class QMSPOCPermissionDefinitionProvider : PermissionDefinitionProvider
         itemBomDetailPermission.AddChild(QMSPOCPermissions.ItemBomDetails.Create, L("Permission:Create"));
         itemBomDetailPermission.AddChild(QMSPOCPermissions.ItemBomDetails.Edit, L("Permission:Edit"));
         itemBomDetailPermission.AddChild(QMSPOCPermissions.ItemBomDetails.Delete, L("Permission:Delete"));
+
+        var itemMessurementPermission = myGroup.AddPermission(QMSPOCPermissions.ItemMessurements.Default, L("Permission:ItemMessurements"));
+        itemMessurementPermission.AddChild(QMSPOCPermissions.ItemMessurements.Create, L("Permission:Create"));
+        itemMessurementPermission.AddChild(QMSPOCPermissions.ItemMessurements.Edit, L("Permission:Edit"));
+        itemMessurementPermission.AddChild(QMSPOCPermissions.ItemMessurements.Delete, L("Permission:Delete"));
+
+        var itemMeasuremetnDetailPermission = myGroup.AddPermission(QMSPOCPermissions.ItemMeasuremetnDetails.Default, L("Permission:ItemMeasuremetnDetails"));
+        itemMeasuremetnDetailPermission.AddChild(QMSPOCPermissions.ItemMeasuremetnDetails.Create, L("Permission:Create"));
+        itemMeasuremetnDetailPermission.AddChild(QMSPOCPermissions.ItemMeasuremetnDetails.Edit, L("Permission:Edit"));
+        itemMeasuremetnDetailPermission.AddChild(QMSPOCPermissions.ItemMeasuremetnDetails.Delete, L("Permission:Delete"));
     }
 
     private static LocalizableString L(string name)

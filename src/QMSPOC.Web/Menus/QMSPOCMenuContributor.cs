@@ -114,6 +114,15 @@ icon: "fa fa-file-alt",
                 icon: "fa fa-file-alt",
                 requiredPermissionName: QMSPOCPermissions.ItemBoms.Default)
         );
+
+        context.Menu.AddItem(
+            new ApplicationMenuItem(
+                QMSPOCMenus.ItemMessurements,
+                l["Menu:ItemMessurements"],
+                url: "/ItemMessurements",
+                icon: "fa fa-file-alt",
+                requiredPermissionName: QMSPOCPermissions.ItemMessurements.Default)
+        );
         return Task.CompletedTask;
     }
 }

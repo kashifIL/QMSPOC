@@ -231,6 +231,7 @@ public class QMSPOCWebModule : AbpModule
             options.Conventions.AuthorizePage("/ItemCategories/Index", QMSPOCPermissions.ItemCategories.Default);
             options.Conventions.AuthorizePage("/Items/Index", QMSPOCPermissions.Items.Default);
             options.Conventions.AuthorizePage("/ItemBoms/Index", QMSPOCPermissions.ItemBoms.Default);
+            options.Conventions.AuthorizePage("/ItemMessurements/Index", QMSPOCPermissions.ItemMessurements.Default);
         });
     }
 

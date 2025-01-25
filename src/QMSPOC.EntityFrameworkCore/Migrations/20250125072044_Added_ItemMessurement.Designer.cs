@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QMSPOC.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace QMSPOC.Migrations
 {
     [DbContext(typeof(QMSPOCDbContext))]
-    partial class QMSPOCDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250125072044_Added_ItemMessurement")]
+    partial class Added_ItemMessurement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,37 +113,6 @@ namespace QMSPOC.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppItemCategories", (string)null);
-                });
-
-            modelBuilder.Entity("QMSPOC.ItemMeasuremetnDetails.ItemMeasuremetnDetail", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ItemMessurementId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("TenantId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("TenantId");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Type");
-
-                    b.Property<string>("Uom")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Uom");
-
-                    b.Property<decimal>("Value")
-                        .HasColumnType("decimal(18,2)")
-                        .HasColumnName("Value");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ItemMessurementId");
-
-                    b.ToTable("AppItemMeasuremetnDetails", (string)null);
                 });
 
             modelBuilder.Entity("QMSPOC.ItemMessurements.ItemMessurement", b =>
@@ -2872,15 +2844,6 @@ namespace QMSPOC.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("QMSPOC.ItemMeasuremetnDetails.ItemMeasuremetnDetail", b =>
-                {
-                    b.HasOne("QMSPOC.ItemMessurements.ItemMessurement", null)
-                        .WithMany("ItemMeasuremetnDetails")
-                        .HasForeignKey("ItemMessurementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("QMSPOC.ItemMessurements.ItemMessurement", b =>
                 {
                     b.HasOne("QMSPOC.Items.Item", null)
@@ -3094,11 +3057,6 @@ namespace QMSPOC.Migrations
             modelBuilder.Entity("QMSPOC.ItemBoms.ItemBom", b =>
                 {
                     b.Navigation("ItemBomDetails");
-                });
-
-            modelBuilder.Entity("QMSPOC.ItemMessurements.ItemMessurement", b =>
-                {
-                    b.Navigation("ItemMeasuremetnDetails");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>

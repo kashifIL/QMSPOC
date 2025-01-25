@@ -1,3 +1,5 @@
+using QMSPOC.ItemMeasuremetnDetails;
+using QMSPOC.ItemMessurements;
 using QMSPOC.ItemBomDetails;
 using QMSPOC.ItemBoms;
 using QMSPOC.Items;
@@ -66,6 +68,10 @@ public class QMSPOCEntityFrameworkCoreModule : AbpModule
             options.AddRepository<ItemBom, ItemBoms.EfCoreItemBomRepository>();
 
             options.AddRepository<ItemBomDetail, ItemBomDetails.EfCoreItemBomDetailRepository>();
+
+            options.AddRepository<ItemMessurement, ItemMessurements.EfCoreItemMessurementRepository>();
+
+            options.AddRepository<ItemMeasuremetnDetail, ItemMeasuremetnDetails.EfCoreItemMeasuremetnDetailRepository>();
 
         });
 
