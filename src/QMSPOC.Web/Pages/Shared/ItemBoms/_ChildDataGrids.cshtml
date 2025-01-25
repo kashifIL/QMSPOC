@@ -1,0 +1,43 @@
+@using QMSPOC.Localization
+@using QMSPOC.Permissions
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<QMSPOCResource> L
+@inject IAuthorizationService Authorization
+@model Guid
+
+<div class="rounded p-3 pb-0 pt-1">
+    <ul class="nav nav-tabs" role="tablist">
+        @if (await Authorization.IsGrantedAsync(QMSPOCPermissions.ItemBomDetails.Default))
+    {
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="ItemBomDetails-tab-@Model" data-bs-toggle="tab" data-bs-target="#ItemBomDetail-@Model" type="button" role="tab" aria-controls="ItemBomDetail" aria-selected="true">@L["ItemBomDetails"]</a>
+        </li>
+    }
+    </ul>
+    
+    <div class="tab-content pt-0">
+        @if (await Authorization.IsGrantedAsync(QMSPOCPermissions.ItemBomDetails.Default))
+    {
+        <div class="tab-pane fade show active" id="ItemBomDetail-@Model" role="tabpanel" aria-labelledby="ItemBomDetail-tab-@Model">
+            @if (await Authorization.IsGrantedAsync(QMSPOCPermissions.ItemBomDetails.Create))
+            {
+                <button data-itemBom-id="@Model" class="btn btn-primary btn-sm float-end mb-3 NewItemBomDetailButton" type="button" data-busy-text="@L["Processing"]">
+                    <i class="fa fa-plus"></i> <span>@L["NewItemBomDetail"]</span>
+                </button>
+            }
+        
+            <table class="table table-striped dataTable no-footer" striped-rows="true" id="ItemBomDetailsTable-@Model">
+                <thead>
+                <tr>
+                    <th>@L["Actions"]</th>
+                    					<th>@L["Qty"]</th>
+					<th>@L["Uom"]</th>
+					<th>@L["Item"]</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    }
+    </div>
+</div>

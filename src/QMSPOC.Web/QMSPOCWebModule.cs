@@ -43,7 +43,7 @@ using Volo.Abp.Account.Public.Web.ExternalProviders;
 using Volo.Abp.Account.Pro.Public.Web.Shared;
 using Volo.Abp.AuditLogging.Web;
 using Volo.Abp.LanguageManagement;
-    using Volo.FileManagement.Web;
+using Volo.FileManagement.Web;
 using Volo.Abp.TextTemplateManagement.Web;
 using Volo.Saas.Host;
 using Volo.Abp.Gdpr.Web;
@@ -152,7 +152,7 @@ public class QMSPOCWebModule : AbpModule
             {
                 options.DisableTransportSecurityRequirement = true;
             });
-            
+
             Configure<ForwardedHeadersOptions>(options =>
             {
                 options.ForwardedHeaders = ForwardedHeaders.XForwardedProto;
@@ -228,6 +228,9 @@ public class QMSPOCWebModule : AbpModule
         {
             options.Conventions.AuthorizePage("/HostDashboard", QMSPOCPermissions.Dashboard.Host);
             options.Conventions.AuthorizePage("/TenantDashboard", QMSPOCPermissions.Dashboard.Tenant);
+            options.Conventions.AuthorizePage("/ItemCategories/Index", QMSPOCPermissions.ItemCategories.Default);
+            options.Conventions.AuthorizePage("/Items/Index", QMSPOCPermissions.Items.Default);
+            options.Conventions.AuthorizePage("/ItemBoms/Index", QMSPOCPermissions.ItemBoms.Default);
         });
     }
 
@@ -324,7 +327,6 @@ public class QMSPOCWebModule : AbpModule
             }
         );
     }
-
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
     {

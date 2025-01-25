@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 using QMSPOC.Localization;
 using QMSPOC.Permissions;
@@ -60,7 +62,6 @@ public class QMSPOCMenuContributor : IMenuContributor
                 order: 2
             ).RequirePermissions(QMSPOCPermissions.Dashboard.Tenant)
         );
-    
 
         //Administration
         var administration = context.Menu.GetAdministration();
@@ -86,7 +87,33 @@ public class QMSPOCMenuContributor : IMenuContributor
 
         //Administration->Settings
         administration.SetSubItemOrder(SettingManagementMenuNames.GroupName, 7);
-        
+
+        context.Menu.AddItem(
+            new ApplicationMenuItem(
+                QMSPOCMenus.ItemCategories,
+                l["Menu:ItemCategories"],
+                url: "/ItemCategories",
+                icon: "fa fa-file-alt",
+                requiredPermissionName: QMSPOCPermissions.ItemCategories.Default)
+        );
+
+        context.Menu.AddItem(
+            new ApplicationMenuItem(
+                QMSPOCMenus.Items,
+                l["Menu:Items"],
+                url: "/Items",
+icon: "fa fa-file-alt",
+                requiredPermissionName: QMSPOCPermissions.Items.Default)
+        );
+
+        context.Menu.AddItem(
+            new ApplicationMenuItem(
+                QMSPOCMenus.ItemBoms,
+                l["Menu:ItemBoms"],
+                url: "/ItemBoms",
+                icon: "fa fa-file-alt",
+                requiredPermissionName: QMSPOCPermissions.ItemBoms.Default)
+        );
         return Task.CompletedTask;
     }
 }

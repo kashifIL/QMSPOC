@@ -1,3 +1,7 @@
+using QMSPOC.ItemBomDetails;
+using QMSPOC.ItemBoms;
+using QMSPOC.Items;
+using QMSPOC.ItemCategories;
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Uow;
@@ -52,9 +56,17 @@ public class QMSPOCEntityFrameworkCoreModule : AbpModule
     {
         context.Services.AddAbpDbContext<QMSPOCDbContext>(options =>
         {
-                /* Remove "includeAllEntities: true" to create
-                 * default repositories only for aggregate roots */
+            /* Remove "includeAllEntities: true" to create
+             * default repositories only for aggregate roots */
             options.AddDefaultRepositories(includeAllEntities: true);
+            options.AddRepository<ItemCategory, ItemCategories.EfCoreItemCategoryRepository>();
+
+            options.AddRepository<Item, Items.EfCoreItemRepository>();
+
+            options.AddRepository<ItemBom, ItemBoms.EfCoreItemBomRepository>();
+
+            options.AddRepository<ItemBomDetail, ItemBomDetails.EfCoreItemBomDetailRepository>();
+
         });
 
         if (AbpStudioAnalyzeHelper.IsInAnalyzeMode)
@@ -64,10 +76,10 @@ public class QMSPOCEntityFrameworkCoreModule : AbpModule
 
         Configure<AbpDbContextOptions>(options =>
         {
-                /* The main point to change your DBMS.
-                 * See also QMSPOCDbContextFactory for EF Core tooling. */
+            /* The main point to change your DBMS.
+             * See also QMSPOCDbContextFactory for EF Core tooling. */
             options.UseSqlServer();
         });
-        
+
     }
 }

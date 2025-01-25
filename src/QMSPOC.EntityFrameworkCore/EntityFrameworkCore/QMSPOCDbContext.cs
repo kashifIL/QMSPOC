@@ -1,3 +1,7 @@
+using QMSPOC.ItemBomDetails;
+using QMSPOC.ItemBoms;
+using QMSPOC.Items;
+using QMSPOC.ItemCategories;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -31,8 +35,11 @@ public class QMSPOCDbContext :
     ISaasDbContext,
     IIdentityProDbContext
 {
+    public DbSet<ItemBomDetail> ItemBomDetails { get; set; } = null!;
+    public DbSet<ItemBom> ItemBoms { get; set; } = null!;
+    public DbSet<Item> Items { get; set; } = null!;
+    public DbSet<ItemCategory> ItemCategories { get; set; } = null!;
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
-
 
     #region Entities from the modules
 
@@ -90,7 +97,7 @@ public class QMSPOCDbContext :
         builder.ConfigureTextTemplateManagement();
         builder.ConfigureGdpr();
         builder.ConfigureBlobStoring();
-        
+
         /* Configure your own tables/entities inside here */
 
         //builder.Entity<YourEntity>(b =>
@@ -99,5 +106,45 @@ public class QMSPOCDbContext :
         //    b.ConfigureByConvention(); //auto configure for the base class props
         //    //...
         //});
+        builder.Entity<ItemCategory>(b =>
+                {
+                    b.ToTable(QMSPOCConsts.DbTablePrefix + "ItemCategories", QMSPOCConsts.DbSchema);
+                    b.ConfigureByConvention();
+                    b.Property(x => x.TenantId).HasColumnName(nameof(ItemCategory.TenantId));
+                    b.Property(x => x.Code).HasColumnName(nameof(ItemCategory.Code)).IsRequired();
+                    b.Property(x => x.Name).HasColumnName(nameof(ItemCategory.Name)).IsRequired();
+                });
+
+        builder.Entity<Item>(b =>
+                {
+                    b.ToTable(QMSPOCConsts.DbTablePrefix + "Items", QMSPOCConsts.DbSchema);
+                    b.ConfigureByConvention();
+                    b.Property(x => x.TenantId).HasColumnName(nameof(Item.TenantId));
+                    b.Property(x => x.Code).HasColumnName(nameof(Item.Code)).IsRequired();
+                    b.Property(x => x.Description).HasColumnName(nameof(Item.Description)).IsRequired();
+                    b.HasOne<ItemCategory>().WithMany().IsRequired().HasForeignKey(x => x.ItemCategoryId).OnDelete(DeleteBehavior.NoAction);
+                });
+
+        builder.Entity<ItemBom>(b =>
+                {
+                    b.ToTable(QMSPOCConsts.DbTablePrefix + "ItemBoms", QMSPOCConsts.DbSchema);
+                    b.ConfigureByConvention();
+                    b.Property(x => x.TenantId).HasColumnName(nameof(ItemBom.TenantId));
+                    b.Property(x => x.Code).HasColumnName(nameof(ItemBom.Code)).IsRequired();
+                    b.Property(x => x.Version).HasColumnName(nameof(ItemBom.Version));
+                    b.Property(x => x.Description).HasColumnName(nameof(ItemBom.Description));
+                    b.HasOne<Item>().WithMany().IsRequired().HasForeignKey(x => x.ItemId).OnDelete(DeleteBehavior.NoAction);
+                    b.HasMany(x => x.ItemBomDetails).WithOne().HasForeignKey(x => x.ItemBomId).IsRequired().OnDelete(DeleteBehavior.Cascade);
+                });
+        builder.Entity<ItemBomDetail>(b =>
+                {
+                    b.ToTable(QMSPOCConsts.DbTablePrefix + "ItemBomDetails", QMSPOCConsts.DbSchema);
+                    b.ConfigureByConvention();
+                    b.Property(x => x.TenantId).HasColumnName(nameof(ItemBomDetail.TenantId));
+                    b.Property(x => x.Qty).HasColumnName(nameof(ItemBomDetail.Qty));
+                    b.Property(x => x.Uom).HasColumnName(nameof(ItemBomDetail.Uom));
+                    b.HasOne<Item>().WithMany().IsRequired().HasForeignKey(x => x.ItemId).OnDelete(DeleteBehavior.NoAction);
+                    b.HasOne<ItemBom>().WithMany(x => x.ItemBomDetails).HasForeignKey(x => x.ItemBomId).IsRequired().OnDelete(DeleteBehavior.Cascade);
+                });
     }
 }

@@ -1,0 +1,40 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using QMSPOC.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@using QMSPOC.Web.Pages.ItemCategories
+@using QMSPOC.ItemCategories;
+@using System.Globalization
+@inject IHtmlLocalizer<QMSPOCResource> L
+@model CreateModalModel
+@{
+    Layout = null;
+}
+
+
+<form data-ajaxForm="true" asp-page="/ItemCategories/CreateModal" autocomplete="off">
+    <abp-modal id="ItemCategoryCreateModal">
+        <abp-modal-header title="@L["NewItemCategory"].Value"></abp-modal-header>
+
+        <abp-modal-body>
+
+                
+                    
+                    
+
+            <abp-input asp-for="ItemCategory.Code"    />
+
+
+            <abp-input asp-for="ItemCategory.Name"    />
+
+                    
+                
+
+
+        </abp-modal-body>
+
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)">
+
+        </abp-modal-footer>
+    </abp-modal>
+</form>

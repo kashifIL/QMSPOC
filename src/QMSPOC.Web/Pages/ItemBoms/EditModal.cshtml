@@ -1,0 +1,46 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using QMSPOC.Localization
+@using QMSPOC.Web.Pages.ItemBoms
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@using QMSPOC.ItemBoms;
+@using System.Globalization
+@inject IHtmlLocalizer<QMSPOCResource> L
+@model EditModalModel
+@{
+    Layout = null;
+}
+
+<form data-ajaxForm="true" asp-page="/ItemBoms/EditModal" autocomplete="off">
+    <abp-modal id="ItemBomEditModal">
+        <abp-modal-header title="@L["Update"].Value"></abp-modal-header>
+
+        <abp-modal-body>
+
+
+            <abp-input asp-for="Id" />
+
+                
+                    
+                    
+                    
+
+            <abp-input asp-for="ItemBom.Code"    />
+
+
+            <abp-input asp-for="ItemBom.Version"    />
+
+
+            <abp-input asp-for="ItemBom.Description"    />
+
+                                <abp-select asp-for="ItemBom.ItemId" asp-items="Model.ItemLookupListRequired" label="@L["Item"].Value"/>
+                
+
+
+        </abp-modal-body>
+
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)">
+
+        </abp-modal-footer>
+    </abp-modal>
+</form>
